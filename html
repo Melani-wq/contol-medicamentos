@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control de Medicamentos</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>💊 Control de Stock</h1>
+
+<form action="/agregar" method="POST">
+    <input type="text" name="medicamento" placeholder="Medicamento" required>
+    
+    <select name="tipo">
+        <option value="Entrada">Entrada</option>
+        <option value="Salida">Salida</option>
+    </select>
+
+    <input type="number" name="cantidad" placeholder="Cantidad" required>
+    <input type="text" name="paciente" placeholder="Paciente">
+    <input type="text" name="usuario" placeholder="Usuario">
+
+    <button type="submit">Agregar</button>
+</form>
+
+<h2>📊 Stock</h2>
+<ul>
+    {% for med, cant in stock.items() %}
+        <li>{{ med }}: {{ cant }}</li>
+    {% endfor %}
+</ul>
+
+<h2>📋 Movimientos</h2>
+<table>
+    <tr>
+        <th>Medicamento</th>
+        <th>Tipo</th>
+        <th>Cantidad</th>
+        <th>Paciente</th>
+        <th>Usuario</th>
+    </tr>
+
+    {% for m in movimientos %}
+    <tr>
+        <td>{{ m.medicamento }}</td>
+        <td>{{ m.tipo }}</td>
+        <td>{{ m.cantidad }}</td>
+        <td>{{ m.paciente }}</td>
+        <td>{{ m.usuario }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
